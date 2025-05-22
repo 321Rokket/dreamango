@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Brand colors */
+    --primary: 204 61% 55%; /* Telkom blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 54% 26%; /* Telkom dark blue */
+    --secondary-foreground: 0 0% 100%;
+
+    --tertiary: 181 100% 33%; /* Telkom teal */
+    --tertiary-foreground: 0 0% 100%;
+
+    /* UI colors */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 204 80% 96%;
+    --accent-foreground: 204 61% 55%;
+
+    --destructive: 16 100% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 204 61% 55%;
+
+    /* Status colors */
+    --success: 84 77% 41%; /* Telkom green */
+    --success-foreground: 0 0% 100%;
+
+    --warning: 48 100% 50%; /* MTN yellow */
+    --warning-foreground: 0 0% 0%;
+
+    --danger: 16 100% 56%; /* Telkom orange */
+    --danger-foreground: 0 0% 100%;
+
+    --info: 204 61% 55%; /* Telkom blue */
+    --info-foreground: 0 0% 100%;
+
+    --neutral: 220 9% 46%; /* Telkom gray */
+    --neutral-foreground: 0 0% 100%;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 215 54% 26%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-accent: 215 51% 31%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 51% 20%;
+    --sidebar-ring: 204 61% 55%;
+    --sidebar-primary: 204 61% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Brand colors */
+    --primary: 204 61% 55%; /* Telkom blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 54% 26%; /* Telkom dark blue */
+    --secondary-foreground: 0 0% 100%;
+
+    --tertiary: 181 100% 33%; /* Telkom teal */
+    --tertiary-foreground: 0 0% 100%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 215 54% 16%;
+    --accent-foreground: 204 61% 65%;
+
+    --destructive: 16 100% 46%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 204 61% 55%;
+
+    /* Status colors - dark mode */
+    --success: 84 77% 41%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 48 100% 50%;
+    --warning-foreground: 0 0% 0%;
+
+    --danger: 16 100% 56%;
+    --danger-foreground: 210 40% 98%;
+
+    --info: 204 61% 55%;
+    --info-foreground: 210 40% 98%;
+
+    --neutral: 220 9% 46%;
+    --neutral-foreground: 210 40% 98%;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 215 54% 26%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-accent: 215 51% 31%;
+    --sidebar-accent-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Telkom Typography Scale */
+  .text-display-1 {
+    @apply text-4xl md:text-5xl font-bold text-telkom-dark-blue leading-tight;
+  }
+
+  .text-display-2 {
+    @apply text-3xl md:text-4xl font-bold text-telkom-dark-blue leading-tight;
+  }
+
+  .text-heading-1 {
+    @apply text-2xl md:text-3xl font-semibold text-telkom-dark-blue leading-tight;
+  }
+
+  .text-heading-2 {
+    @apply text-xl md:text-2xl font-semibold text-telkom-dark-blue leading-snug;
+  }
+
+  .text-heading-3 {
+    @apply text-lg md:text-xl font-semibold text-telkom-dark-blue leading-snug;
+  }
+
+  .text-heading-4 {
+    @apply text-base md:text-lg font-semibold text-telkom-dark-blue leading-normal;
+  }
+
+  .text-body-large {
+    @apply text-lg font-normal text-telkom-gray-700 leading-relaxed;
+  }
+
+  .text-body {
+    @apply text-base font-normal text-telkom-gray-700 leading-relaxed;
+  }
+
+  .text-body-small {
+    @apply text-sm font-normal text-telkom-gray-600 leading-normal;
+  }
+
+  .text-caption {
+    @apply text-xs font-medium text-telkom-gray-500 leading-normal;
+  }
+
+  .text-button {
+    @apply text-sm font-medium leading-none;
+  }
+
+  .text-link {
+    @apply text-telkom-blue hover:text-telkom-blue-600 underline underline-offset-2;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-telkom-blue hover:bg-telkom-blue-600 text-white;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-telkom-blue text-telkom-blue hover:bg-telkom-blue-50;
+  }
+
+  .btn-tertiary {
+    @apply bg-transparent text-telkom-blue hover:bg-telkom-blue-50;
+  }
+
+  .btn-danger {
+    @apply bg-telkom-orange hover:bg-telkom-orange/90 text-white;
+  }
+
+  /* Card variants */
+  .card-default {
+    @apply bg-white border border-telkom-gray-200 shadow-sm rounded-lg;
+  }
+
+  .card-elevated {
+    @apply bg-white shadow-md rounded-lg;
+  }
+
+  .card-flat {
+    @apply bg-telkom-blue-50 rounded-lg;
+  }
+
+  .card-bordered {
+    @apply bg-transparent border border-telkom-blue-200 rounded-lg;
+  }
+
+  /* Status indicators */
+  .status-positive {
+    @apply text-status-positive bg-status-positive-50 border border-status-positive/20;
+  }
+
+  .status-negative {
+    @apply text-status-negative bg-status-negative-50 border border-status-negative/20;
+  }
+
+  .status-warning {
+    @apply text-status-warning bg-status-warning-50 border border-status-warning/20;
+  }
+
+  .status-info {
+    @apply text-status-info bg-status-info-50 border border-status-info/20;
+  }
+
+  .status-neutral {
+    @apply text-status-neutral bg-status-neutral-50 border border-status-neutral/20;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Overlay panel styles */
+.overlay-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 320px;
+  z-index: 50;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.overlay-panel.open {
+  transform: translateX(0);
+}
+
+/* Card content fixes */
+.card-content-fix {
+  overflow: auto;
+  max-height: 100%;
+}
+
+/* Nivo chart customizations */
+.nivo-tooltip {
+  background: #1e3c64 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+}
+
+/* Table styling */
+.telkom-table {
+  @apply w-full overflow-auto rounded-lg border border-telkom-gray-200;
+}
+
+.telkom-table table {
+  @apply w-full;
+}
+
+.telkom-table thead {
+  @apply bg-telkom-blue-50;
+}
+
+.telkom-table th {
+  @apply h-12 px-4 text-sm font-medium text-telkom-dark-blue text-left;
+}
+
+.telkom-table tr {
+  @apply border-b border-telkom-gray-100 hover:bg-telkom-blue-50 transition-colors;
+}
+
+.telkom-table td {
+  @apply p-4 text-sm text-telkom-gray-700;
+}
+
+/* Form styling */
+.telkom-form-control {
+  @apply space-y-2;
+}
+
+.telkom-form-label {
+  @apply text-body-small font-medium text-telkom-gray-700;
+}
+
+.telkom-form-input {
+  @apply border-telkom-gray-300 focus:border-telkom-blue focus:ring-1 focus:ring-telkom-blue;
+}

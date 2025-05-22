@@ -1,0 +1,71 @@
+name: Dreamcatchr CI
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build_and_test_backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    # - name: Lint with Flake8 (Placeholder)
+    #   run: |
+    #     pip install flake8
+    #     flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    # - name: Test with Pytest (Placeholder)
+    #   run: |
+    #     pip install pytest pytest-django
+    #     pytest
+
+  build_and_test_frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build
+    # - name: Lint with ESLint (Placeholder)
+    #   run: npm run lint
+    # - name: Test with Jest (Placeholder)
+    #   run: npm test -- --watchAll=false
+
+  # Placeholder for Docker build and push
+  # build_docker_images:
+  #   runs-on: ubuntu-latest
+  #   needs: [build_and_test_backend, build_and_test_frontend]
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Login to Docker Hub (Placeholder - use secrets for credentials)
+  #     # run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+  #     run: echo "Docker login placeholder"
+  #   - name: Build and push backend image
+  #     run: |
+  #       docker build -t yourdockerhubusername/dreamcatchr-backend:latest ./backend
+  #       docker push yourdockerhubusername/dreamcatchr-backend:latest
+  #   - name: Build and push frontend image
+  #     run: |
+  #       docker build -t yourdockerhubusername/dreamcatchr-frontend:latest ./frontend
+  #       docker push yourdockerhubusername/dreamcatchr-frontend:latest

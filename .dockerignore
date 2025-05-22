@@ -1,0 +1,14 @@
+.git
+.vscode
+**/__pycache__
+**/*.pyc
+**/node_modules
+**/build
+**/dist
+.env
+*.env
+backend/.env
+frontend/.env
+terraform/.terraform
+*.tfstate
+*.tfstate.backup
