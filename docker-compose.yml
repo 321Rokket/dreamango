@@ -1,6 +1,54 @@
 version: '3.8'
 
 services:
+  # Test database for isolated testing
+  test-db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=dreamango_test
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test -d dreamango_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend testing service
+  backend-test:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dreamango-backend-test
+    environment:
+      - DREAMANGO_SECRET_KEY=test-secret-key
+      - DREAMANGO_ENV=testing
+      - DREAMANGO_DEBUG=True
+      - DATABASE_URL=postgresql://test:test@test-db:5432/dreamango_test
+      - ALLOWED_HOSTS=localhost,backend-test
+    depends_on:
+      test-db:
+        condition: service_healthy
+    command: ["python", "manage.py", "test", "--verbosity=2"]
+    volumes:
+      - ./test-logs:/app/test-logs
+    profiles: ["test"]
+
+  # Frontend testing service  
+  frontend-test:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.test
+    container_name: dreamango-frontend-test
+    environment:
+      - CI=true
+      - BACKEND_URL=http://backend-test:8000
+    volumes:
+      - ./test-logs:/app/test-logs
+    profiles: ["test"]
+
   backend:
     build:
       context: ./backend

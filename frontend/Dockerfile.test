@@ -1,0 +1,20 @@
+# Frontend Testing Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm ci
+
+# Copy project files
+COPY . .
+
+# Install testing dependencies
+RUN npm install --save-dev jest @testing-library/react @testing-library/jest-dom vitest jsdom
+
+# Create test logs directory
+RUN mkdir -p /app/test-logs
+
+# Run tests with coverage and output
+CMD ["sh", "-c", "npm run test:coverage 2>&1 | tee /app/test-logs/frontend-test-$(date +%Y%m%d-%H%M%S).log"]

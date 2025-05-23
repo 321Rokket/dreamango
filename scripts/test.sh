@@ -20,7 +20,9 @@ touch "$TEST_LOG_FILE"
 log() {
     local message="[$(date '+%Y-%m-%d %H:%M:%S')] $1"
     echo "$message"
-    echo "$message" >> "$TEST_LOG_FILE"
+    if [ -f "$TEST_LOG_FILE" ]; then
+        echo "$message" >> "$TEST_LOG_FILE"
+    fi
 }
 
 # Function to run tests and capture exit code
@@ -41,9 +43,9 @@ run_test() {
 
 # Test Phase 1: Linting and Type Checking
 log "Phase 1: Code Quality Checks"
-run_test "Backend Linting" "cd backend && python -m flake8 . --max-line-length=127 --exclude=venv,migrations" || exit 1
-run_test "Frontend Linting" "cd frontend && npm run lint" || exit 1
-run_test "Frontend Type Check" "cd frontend && npx tsc --noEmit" || exit 1
+run_test "Backend Linting" "(cd backend && python -m flake8 . --max-line-length=127 --exclude=venv,migrations)" || exit 1
+run_test "Frontend Linting" "(cd frontend && npm run lint)" || exit 1
+run_test "Frontend Type Check" "(cd frontend && npx tsc --noEmit)" || exit 1
 
 # Test Phase 2: Unit Tests in Containers
 log "Phase 2: Unit Tests"
@@ -56,7 +58,7 @@ run_test "Health Check Tests" "docker compose up -d && sleep 30 && curl -f http:
 
 # Test Phase 4: Security Checks
 log "Phase 4: Security Checks"
-run_test "Dependency Audit Frontend" "cd frontend && npm audit --audit-level=high" || exit 1
+run_test "Dependency Audit Frontend" "(cd frontend && npm audit --audit-level=high)" || exit 1
 run_test "Docker Image Security" "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/path bitnami/trivy:latest image dreamango-backend:latest" || true
 
 # Cleanup

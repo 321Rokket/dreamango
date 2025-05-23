@@ -87,3 +87,10 @@ terraform.rc
 
 # CHOIRBOIS
 CHOIRBOIS/tmp/
+test-logs/
+coverage/
+.coverage
+*.log
+.pytest_cache/
+.vitest/
+node_modules/.cache/
