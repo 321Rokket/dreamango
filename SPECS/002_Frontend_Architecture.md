@@ -1,54 +1,88 @@
 # Frontend Architecture
 
+## Responsible CHOIRBOIS Conductor(s)
+- SUPER_CONDUCTORS/DEVSECDATAMODELOPS_CONDUCTOR
+- SUPER_CONDUCTORS/PRODUCT_CONDUCTOR
+- SUPER_CONDUCTORS/PROJECT_CONDUCTOR
+
 ## Technology Stack
-- React 18 with TypeScript
-- Vite for build tooling
-- TailwindCSS for styling
-- DaisyUI for component library
-- Jest + React Testing Library for testing
-- Next Themes for theme management
-- Framer Motion for animations
+- React 19.1.0 (Latest)
+- TypeScript 5.8.3
+- Vite 6.3.5 for build tooling
+- TailwindCSS 4.1.7
+- DaisyUI 5.0.37
+- ESLint 9.25.0
+- PostCSS 8.5.3
+- Docker for containerization
+- Nginx for production serving
 
 ## Project Structure
 ```
 frontend/
 ├── src/
-│   ├── components/
-│   │   ├── ui/
-│   │   │   ├── AnimatedLogoGradient.tsx
-│   │   │   ├── AnimatedLogoWhite.tsx
-│   │   │   └── buttons/
-│   │   │       └── button.tsx
-│   │   └── Hero.tsx
-│   ├── lib/
-│   │   └── utils.ts
-│   ├── App.tsx
-│   └── main.tsx
-├── __tests__/
-│   ├── components/
-│   │   ├── ui/
-│   │   │   ├── AnimatedLogoGradient.test.tsx
-│   │   │   └── AnimatedLogoWhite.test.tsx
-│   │   └── Hero.test.tsx
-├── jest.config.js
-├── jest.setup.js
-└── setupTests.ts
+│   ├── components/  # React components
+│   ├── lib/         # Utility functions
+│   └── App.tsx      # Main application component
+├── public/         # Static assets
+├── dist/           # Build output
+├── node_modules/   # Dependencies
+├── package.json    # Project configuration
+├── tsconfig.json   # TypeScript configuration
+├── eslint.config.js # ESLint configuration
+├── tailwind.config.ts # Tailwind configuration
+├── postcss.config.ts  # PostCSS configuration
+└── vite.config.ts   # Vite configuration
 ```
 
 ## Component Architecture
 
 ### Core Components
-1. **AnimatedLogoGradient**
-   - Features:
-     - Gradient animation
-     - Responsive design
-     - Theme-aware colors
-   - Tests:
-     - Animation rendering
-     - Theme switching
-     - Responsive behavior
+1. **UI Components**
+   - Modern React components with TypeScript
+   - TailwindCSS for styling
+   - DaisyUI for component styling
+   - Responsive design patterns
 
-2. **AnimatedLogoWhite**
+2. **Theme System**
+   - TailwindCSS for styling
+   - DaisyUI theme support
+   - Custom theme variables
+
+3. **Build & Development**
+   - Vite for fast development
+   - TypeScript for type safety
+   - ESLint for code quality
+   - Docker for consistent environments
+
+## Development Workflow
+- TypeScript compilation
+- Vite build process
+- Docker containerization
+- Nginx reverse proxy
+
+## Deployment
+- Docker containerization
+- Nginx configuration
+- Static asset optimization
+- Production build process
+
+## Testing & Quality
+- TypeScript type checking
+- ESLint for code style
+- Jest for unit testing
+- React Testing Library
+
+## Security & Performance
+- Content Security Policy
+- HTTP headers
+- Asset optimization
+- Security best practices
+
+## CI/CD Integration
+- Docker-based builds
+- Static analysis
+- Type checking
+- Production deployment
    - Features:
      - White variant
      - Smooth transitions

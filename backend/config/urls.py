@@ -16,11 +16,13 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from .views import frontend_view, api_status
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", api_status, name="api_status"),
+    path("api/", include("api.urls")),  # Include API app URLs
+    path("api/status/", api_status, name="api_status"),  # Keep the old status endpoint
+    path("health/", api_status, name="health_check"),  # Health check endpoint for load balancers
     re_path(r'^(?:.*)/?$', frontend_view), # Catch-all for frontend
 ]

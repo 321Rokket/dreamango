@@ -5,17 +5,16 @@ import path from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/static/frontend_assets/', // Serve assets from this path in production
+  base: '/', // Use root path for production
   build: {
-    outDir: '../backend/static/frontend_assets',
-    assetsDir: 'assets', // Assets will be in 'dist/assets'
-    manifest: true, // Generate manifest.json
+    outDir: 'dist',
+    assetsDir: 'assets',
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
       },
     },
-    emptyOutDir: true, // Clean the output directory before build
+    emptyOutDir: true,
   },
   server: {
     host: true, // Listen on all addresses

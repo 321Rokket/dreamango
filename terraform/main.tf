@@ -41,81 +41,38 @@ variable "environment" {
   default     = "dev"
 }
 
-# --- Resources (Placeholder - Define your infrastructure here) ---
+# Enable required APIs
+resource "google_project_service" "run_api" {
+  service = "run.googleapis.com"
+}
 
-# Example: VPC Network
-# resource "google_compute_network" "vpc_network" {
-#   name                    = "dreamcatchr-network-${var.environment}"
-#   auto_create_subnetworks = false
-# }
+resource "google_project_service" "iam_api" {
+  service = "iam.googleapis.com"
+}
 
-# Example: Subnet
-# resource "google_compute_subnetwork" "subnet" {
-#   name          = "dreamcatchr-subnet-${var.environment}"
-#   ip_cidr_range = "10.0.0.0/24"
-#   region        = var.gcp_region
-#   network       = google_compute_network.vpc_network.id
-# }
+resource "google_project_service" "secretmanager_api" {
+  service = "secretmanager.googleapis.com"
+}
 
-# Example: Cloud Storage Bucket for static assets
-# resource "google_storage_bucket" "frontend_assets" {
-#   name     = "dreamcatchr-frontend-assets-${var.environment}"
-#   location = "US"
-#   storage_class = "STANDARD"
-#   uniform_bucket_level_access = true
-#   website {
-#     main_page_suffix = "index.html"
-#     not_found_page   = "404.html"
-#   }
-#   cors {
-#     origin          = ["*"]
-#     method          = ["GET", "HEAD", "OPTIONS"]
-#     response_header = ["*"]
-#     max_age_seconds = 3600
-#   }
-# }
-
-# Example: Cloud SQL PostgreSQL Instance
-# resource "google_sql_database_instance" "postgres" {
-#   name             = "dreamcatchr-db-${var.environment}"
-#   database_version = "POSTGRES_14"
-#   region           = var.gcp_region
-#   settings {
-#     tier = "db-f1-micro"
-#     backup_configuration {
-#       enabled = true
-#     }
-#   }
-#   deletion_protection = true
-# }
-
-# Example: Cloud Run Service for Backend
-# resource "google_cloud_run_service" "backend" {
-#   name     = "dreamcatchr-backend-${var.environment}"
-#   location = var.gcp_region
-#   template {
-#     spec {
-#       containers {
-#         image = "gcr.io/${var.gcp_project_id}/dreamcatchr-backend:latest"
-#       }
-#     }
-#   }
-#   traffic {
-#     percent         = 100
-#     latest_revision = true
-#   }
-# }
+resource "google_project_service" "cloudbuild_api" {
+  service = "cloudbuild.googleapis.com"
+}
 
 # --- Outputs ---
-# output "cloud_storage_bucket_url" {
-#   value = google_storage_bucket.frontend_assets.url
-#   description = "URL of the frontend assets bucket"
-# }
+output "backend_url" {
+  value = google_cloud_run_service.backend.status[0].url
+  description = "URL of the backend Cloud Run service"
+}
 
-# output "cloud_run_backend_url" {
-#   value = google_cloud_run_service.backend.status[0].url
-#   description = "URL of the backend Cloud Run service"
-# }
+output "frontend_url" {
+  value = google_cloud_run_service.frontend.status[0].url
+  description = "URL of the frontend Cloud Run service"
+}
+
+output "service_account_email" {
+  value = google_service_account.cloud_run.email
+  description = "Email of the Cloud Run service account"
+}
 
 output "setup_instructions" {
   value = <<EOT
