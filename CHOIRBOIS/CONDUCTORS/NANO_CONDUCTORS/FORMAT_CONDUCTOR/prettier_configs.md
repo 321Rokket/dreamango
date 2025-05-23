@@ -1,0 +1,3 @@
+# prettier_configs
+
+config
