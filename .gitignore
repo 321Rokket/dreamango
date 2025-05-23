@@ -86,4 +86,4 @@ terraform.rc
 .env.production.local
 
 # CHOIRBOIS
-CHOIRBOIS/
+CHOIRBOIS/tmp/
