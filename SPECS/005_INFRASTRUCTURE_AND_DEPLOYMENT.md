@@ -25,9 +25,21 @@ This document outlines the infrastructure and deployment processes for DreamAngo
 - **Status**: ✅ Complete
 - **Components**:
   - Google Cloud Run (GCR) staging environment
-  - Staging database (Google PostgreSQL)
+  - Staging database (SQLite/PostgreSQL ready)
   - Staging frontend and backend services
   - Environment-specific configurations
+  - Automated deployment via GitHub Actions
+
+### Production Environment  
+- **Status**: ✅ DEPLOYED & OPERATIONAL
+- **Frontend URL**: https://dreamango-frontend-108538800485.us-central1.run.app
+- **Backend URL**: https://dreamango-backend-108538800485.us-central1.run.app
+- **Components**:
+  - Google Cloud Run production services
+  - Production database (SQLite with PostgreSQL migration ready)
+  - Secure environment configurations
+  - Health monitoring and logging
+  - Public frontend with private backend architecture
 - **Documentation**: Complete
 - **Known Issues**: None
 

@@ -28,6 +28,11 @@ References will be made to specific .md files within the CONDUCTORS/ hierarchy (
 
 - **Deployment**: ✅ Complete
   - Docker images: ✅ Complete
+  - Cloud Run services: ✅ Complete
+  - Frontend URL: https://dreamango-frontend-108538800485.us-central1.run.app
+  - Backend URL: https://dreamango-backend-108538800485.us-central1.run.app
+  - Security vulnerabilities: ✅ Resolved
+  - Production ready: ✅ Complete
   - GCP deployment: ✅ Complete
   - Environment configurations: ✅ Complete
   - Secret management: ✅ Complete
